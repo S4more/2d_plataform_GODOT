@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://actor/Player/Player.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://actor/Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://health/Health.tscn" type="PackedScene" id=8]
+[ext_resource path="res://utils/pass_through.tscn" type="PackedScene" id=9]
+[ext_resource path="res://combat/Combat.tscn" type="PackedScene" id=10]
+[ext_resource path="res://combat/sword/sword.tscn" type="PackedScene" id=11]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 9.38173, 13.4892 )
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 189.364, 66.5898 )
+collision_layer = 4
+collision_mask = 27
+script = ExtResource( 2 )
+speed = Vector2( 100, 350 )
+gravity = 1000.0
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = ExtResource( 1 )
+animation = "attack"
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1.70573, -1.96581 )
+shape = SubResource( 1 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 26.8688, -2.19501 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 6.14429, -18.3345 )
+current = true
+limit_left = 0
+limit_top = -102
+limit_right = 560
+limit_bottom = 201
+limit_smoothed = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+
+[node name="pass_through" parent="." instance=ExtResource( 9 )]
+position = Vector2( 0.323547, 0.323532 )
+
+[node name="sword" parent="." instance=ExtResource( 11 )]
+position = Vector2( 18.2252, -7.07441 )
+cooldown = 0.3
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="Health" parent="." instance=ExtResource( 8 )]
+
+[node name="Combat" parent="." instance=ExtResource( 10 )]
+[connection signal="attackFinished" from="sword" to="." method="_on_weapon_attackFinished"]
+[connection signal="cooldownFinished" from="sword" to="." method="_on_weapon_cooldownFinished"]
+[connection signal="hit" from="sword" to="sword" method="_on_hit"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="depleted" from="Health" to="." method="_on_Health_depleted"]

@@ -1,0 +1,128 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://sprites/archer.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://actor/Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://actor/states/motion/on_ground/move.gd" type="Script" id=3]
+[ext_resource path="res://sprites/light.png" type="Texture" id=4]
+[ext_resource path="res://actor/Player/Camera2D.gd" type="Script" id=5]
+[ext_resource path="res://actor/states/motion/on_ground/idle.gd" type="Script" id=6]
+[ext_resource path="res://actor/PlayerStateMachine.gd" type="Script" id=7]
+[ext_resource path="res://health/Health.tscn" type="PackedScene" id=8]
+[ext_resource path="res://utils/pass_through.tscn" type="PackedScene" id=9]
+[ext_resource path="res://actor/Enemy/states/StateNameDisplay.tscn" type="PackedScene" id=10]
+[ext_resource path="res://actor/states/motion/in_air/jump.gd" type="Script" id=11]
+[ext_resource path="res://actor/states/motion/in_air/fall.gd" type="Script" id=12]
+[ext_resource path="res://actor/states/combat/attack.gd" type="Script" id=14]
+[ext_resource path="res://combat/bow/Bow.tscn" type="PackedScene" id=15]
+[ext_resource path="res://actor/states/combat/sword.gd" type="Script" id=16]
+[ext_resource path="res://actor/states/motion/in_air/doublejump.gd" type="Script" id=17]
+[ext_resource path="res://actor/states/motion/roll.gd" type="Script" id=18]
+[ext_resource path="res://actor/Player/Shoot.gd" type="Script" id=19]
+[ext_resource path="res://combat/bow/BowShoot.tscn" type="PackedScene" id=20]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10.5463, 18.5629 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 3.89563, 10 )
+
+[node name="Archer" type="KinematicBody2D"]
+position = Vector2( 2, 0 )
+collision_layer = 4
+collision_mask = 51
+script = ExtResource( 2 )
+
+[node name="Health" parent="." instance=ExtResource( 8 )]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = ExtResource( 1 )
+animation = "roll"
+frame = 8
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( -3.64526, -5.62472 )
+shape = SubResource( 1 )
+
+[node name="pass_through" parent="." instance=ExtResource( 9 )]
+visible = false
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 2.14915, -3.48706 )
+scale = Vector2( 0.124397, 0.124397 )
+texture = ExtResource( 4 )
+texture_scale = 2.36
+color = Color( 0.992157, 0.992157, 0.996078, 1 )
+mode = 2
+range_layer_min = -100
+shadow_color = Color( 0.00392157, 0.00392157, 0.00392157, 0 )
+shadow_gradient_length = 1.5
+shadow_filter = 5
+shadow_filter_smooth = 5.8
+
+[node name="StateMachine" type="Node2D" parent="."]
+script = ExtResource( 7 )
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource( 6 )
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource( 3 )
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource( 11 )
+
+[node name="Fall" type="Node" parent="StateMachine"]
+script = ExtResource( 12 )
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource( 14 )
+
+[node name="Roll" type="Node" parent="StateMachine"]
+script = ExtResource( 18 )
+
+[node name="Cooldown" type="Timer" parent="StateMachine/Roll"]
+wait_time = 0.5
+
+[node name="doubleJump" type="Node" parent="StateMachine"]
+script = ExtResource( 17 )
+
+[node name="Shoot" type="Node" parent="StateMachine"]
+script = ExtResource( 19 )
+
+[node name="bowMelee" parent="." instance=ExtResource( 15 )]
+position = Vector2( 12.1122, -4.09644 )
+script = ExtResource( 16 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bowMelee"]
+shape = SubResource( 2 )
+
+[node name="BowShoot" parent="." instance=ExtResource( 20 )]
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 26.631, -7.903 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2( 0, -210 )
+current = true
+process_mode = 0
+limit_left = 0
+limit_smoothed = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+drag_margin_left = 0.0
+drag_margin_top = 1.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+script = ExtResource( 5 )
+
+[node name="StateNameDisplay" parent="." instance=ExtResource( 10 )]
+[connection signal="depleted" from="Health" to="." method="_on_Health_depleted"]
+[connection signal="state_changed" from="StateMachine" to="StateNameDisplay" method="_on_StateMachine_state_changed"]
+[connection signal="state_changed" from="StateMachine" to="BowShoot" method="_on_StateMachine_state_changed"]
+[connection signal="state_changed" from="StateMachine" to="bowMelee" method="_on_StateMachine_state_changed"]
+[connection signal="timeout" from="StateMachine/Roll/Cooldown" to="StateMachine/Roll" method="_on_Cooldown_timeout"]
+[connection signal="attack_finished" from="bowMelee" to="StateMachine/Attack" method="_on_Sword_attack_finished"]
+[connection signal="attack_finished" from="BowShoot" to="StateMachine/Shoot" method="_on_BowShoot_attack_finished"]

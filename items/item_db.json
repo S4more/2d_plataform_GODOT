@@ -1,0 +1,26 @@
+{
+	"Red Arrow":{
+		"texture": "icons/arrow_03d.png",
+		"stackable": true,
+		"type": "Projectile",
+		"weight": 0.1,
+		"sell_price": 0.1,
+		"description": "This is crafting material."
+        },
+	"Red Bow":{
+		"texture": "icons/bow_01d.png",
+		"stackable": false,
+		"type": "Weapon",
+		"weight": 1.0,
+		"sell_price": 2.0,
+		"description": "Shoot em'."
+        },
+	"Silver Sword":{
+		"texture": "icons/sword_02c.png",
+		"stackable": false,
+		"type": "Weapon",
+		"weight": 2.0,
+		"sell_price": 2.0,
+		"description": "Hit. HIT. H I T."
+	}
+}

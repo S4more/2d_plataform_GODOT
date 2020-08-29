@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 1, 1, 1 )
+shadow_color = Color( 0, 0, 0, 0.878431 )
+shadow_offset = Vector2( -30, 2 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 1 )
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
+shadow_color = Color( 0, 0, 0, 0.901961 )
+shadow_offset = Vector2( 0, 4 )
+anti_aliasing = false
+
+[node name="StaminaBar" type="ProgressBar"]
+anchor_left = 0.04
+anchor_top = 0.053
+anchor_right = 0.04
+anchor_bottom = 0.053
+margin_top = -15.9
+margin_right = 192.0
+margin_bottom = 16.1
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+value = 50.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}

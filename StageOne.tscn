@@ -1,0 +1,147 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://sprites/parallax/LUA.png" type="Texture" id=1]
+[ext_resource path="res://groundTileSet.tres" type="TileSet" id=2]
+[ext_resource path="res://actor/Enemy/Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://actor/Player/Archer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://sprites/parallax/parallax-mountain-foreground-trees.png" type="Texture" id=5]
+[ext_resource path="res://sprites/parallax/parallax-mountain-trees.png" type="Texture" id=6]
+[ext_resource path="res://sprites/parallax/parallax-mountain-mountains.png" type="Texture" id=7]
+[ext_resource path="res://sprites/parallax/parallax-mountain-montain-far.png" type="Texture" id=8]
+[ext_resource path="res://sprites/light.png" type="Texture" id=9]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=2]
+blend_mode = 1
+
+[node name="StageOne" type="Node2D"]
+scale = Vector2( 2, 2 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+follow_viewport_enable = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="CanvasLayer"]
+scale = Vector2( 2, 2 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="Player" parent="CanvasLayer" instance=ExtResource( 4 )]
+position = Vector2( 1077.72, 196.868 )
+scale = Vector2( 2, 2 )
+
+[node name="Enemy" parent="CanvasLayer" instance=ExtResource( 3 )]
+position = Vector2( 898.328, 224.126 )
+scale = Vector2( 2, 2 )
+
+[node name="TileMapPlataform" type="TileMap" parent="CanvasLayer"]
+light_mask = 3
+scale = Vector2( 2, 2 )
+z_index = -1
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+collision_layer = 2
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( -131059, 7, 0, -131058, 7, 0, -131057, 7, 0, -131056, 7, 0, -131055, 7, 0, -65518, 7, 0, -65517, 7, 0, 20, 7, 0, 65542, 7, 0, 65543, 7, 0, 65544, 7, 0, 65545, 7, 0, 65546, 7, 0, 65547, 7, 0, 262146, 7, 0, 262147, 7, 0, 262148, 7, 0, 262149, 7, 0, 262150, 7, 0 )
+
+[node name="TileMap" type="TileMap" parent="CanvasLayer"]
+light_mask = 3
+scale = Vector2( 2, 2 )
+z_index = -1
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 42, 22, 0, 43, 22, 0, 44, 22, 0, 45, 22, 0, 46, 22, 0, 47, 22, 0, 48, 22, 0, 49, 22, 0, 50, 22, 0, 51, 22, 0, 52, 22, 0, 65578, 22, 0, 65588, 22, 0, 131114, 22, 0, 131124, 22, 0, 196650, 22, 0, 196660, 22, 0, 262186, 22, 0, 262196, 22, 0, 327693, 11, 0, 327694, 10, 0, 327695, 10, 0, 327696, 10, 0, 327697, 10, 0, 327698, 12, 0, 327704, 15, 0, 327705, 15, 0, 327706, 15, 0, 327732, 22, 0, 393228, 11, 0, 393229, 18, 0, 393230, 21, 0, 393231, 21, 0, 393232, 21, 0, 393233, 21, 0, 393234, 19, 0, 393235, 12, 0, 393240, -1073741816, 0, 393241, 20, 0, 393242, -1610612721, 0, 393268, 22, 0, 458763, 11, 0, 458764, 18, 0, 458765, 21, 0, 458766, 21, 0, 458767, 21, 0, 458768, 21, 0, 458769, 21, 0, 458770, 21, 0, 458771, 19, 0, 458772, 12, 0, 458776, -1073741816, 0, 458777, 20, 0, 458778, -1610612721, 0, 458804, 22, 0, 524288, 10, 0, 524289, 10, 0, 524290, 10, 0, 524291, 10, 0, 524292, 10, 0, 524293, 10, 0, 524294, 10, 0, 524295, 10, 0, 524296, 10, 0, 524297, 10, 0, 524298, 10, 0, 524299, 18, 0, 524300, 1610612757, 0, 524301, 21, 0, 524302, 21, 0, 524303, 21, 0, 524304, 21, 0, 524305, 21, 0, 524306, 21, 0, 524307, 1610612757, 0, 524308, 19, 0, 524309, 15, 0, 524310, 15, 0, 524311, 15, 0, 524312, 18, 0, 524313, 20, 0, 524314, -1610612718, 0, 524315, 15, 0, 524316, 15, 0, 524317, 15, 0, 524318, 15, 0, 524319, 15, 0, 524320, 15, 0, 524321, 15, 0, 524322, 15, 0, 524323, 15, 0, 524324, 15, 0, 524325, 15, 0, 524326, 15, 0, 524327, 15, 0, 524328, 15, 0, 524329, 15, 0, 524330, 15, 0, 524331, 15, 0, 524332, 15, 0, 524333, 15, 0, 524334, 15, 0, 524335, 15, 0, 524336, 15, 0, 524337, 15, 0, 524338, 15, 0, 524339, 15, 0, 524340, 15, 0, 524341, 15, 0, 524342, 15, 0, 524343, 15, 0, 524344, 15, 0, 524345, 15, 0, 524346, 15, 0, 589824, 20, 0, 589825, 20, 0, 589826, 20, 0, 589827, 20, 0, 589828, 20, 0, 589829, 20, 0, 589830, 20, 0, 589831, 20, 0, 589832, 20, 0, 589833, 20, 0, 589834, 20, 0, 589835, 1610612757, 0, 589836, 1610612757, 0, 589837, 1610612757, 0, 589838, 20, 0, 589839, 20, 0, 589840, 20, 0, 589841, 20, 0, 589842, 1610612757, 0, 589843, 1610612757, 0, 589844, 20, 0, 589845, 20, 0, 589846, 20, 0, 589847, 20, 0, 589848, 20, 0, 589849, 20, 0, 589850, 20, 0, 589851, 20, 0, 589852, 20, 0, 589853, 20, 0, 589854, 20, 0, 589855, 20, 0, 589856, 20, 0, 589857, 20, 0, 589858, 20, 0, 589859, 20, 0, 589860, 20, 0, 589861, 20, 0, 589862, 20, 0, 589863, 20, 0, 589864, 20, 0, 589865, 20, 0, 589866, 20, 0, 589867, 20, 0, 589868, 20, 0, 589869, 20, 0, 589870, 20, 0, 589871, 20, 0, 589872, 20, 0, 589873, 20, 0, 589874, 20, 0, 589875, 20, 0, 589876, 20, 0, 589877, 20, 0, 589878, 20, 0, 589879, 20, 0, 589880, 20, 0, 589881, 20, 0, 589882, 20, 0 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+layer = -1
+
+[node name="CanvasModulate2" type="CanvasModulate" parent="ParallaxBackground"]
+scale = Vector2( 2, 2 )
+color = Color( 0.00784314, 0.00784314, 0.176471, 1 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( -753.583, -18.5502 )
+scale = Vector2( 2.009, 2.187 )
+motion_scale = Vector2( 0.01, 0.05 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color( 0.301961, 0.298039, 0.298039, 1 )
+material = SubResource( 1 )
+position = Vector2( 339.277, -42.4995 )
+texture = ExtResource( 1 )
+
+[node name="Light2D" type="Light2D" parent="ParallaxBackground/ParallaxLayer"]
+light_mask = 2
+material = SubResource( 2 )
+position = Vector2( 352.33, -92.7855 )
+scale = Vector2( 1.22739, 1.25377 )
+texture = ExtResource( 9 )
+texture_scale = 0.83
+color = Color( 0.992157, 0.992157, 0.992157, 1 )
+energy = 0.34
+mode = 2
+range_layer_min = -1
+range_layer_max = 1
+range_item_cull_mask = 2
+shadow_enabled = true
+shadow_color = Color( 0, 0, 0, 0.0823529 )
+shadow_buffer_size = 1000
+shadow_item_cull_mask = 2
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( -557.845, -155.878 )
+scale = Vector2( 3.013, 3.28 )
+motion_scale = Vector2( 0.1, 1 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+light_mask = 2
+position = Vector2( -13.9883, -56.6061 )
+texture = ExtResource( 8 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 2176, 160 )
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( -345.304, -90.9753 )
+scale = Vector2( 3.013, 3.28 )
+motion_scale = Vector2( 0.2, 1 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer4"]
+light_mask = 2
+position = Vector2( -13.9883, -56.6061 )
+texture = ExtResource( 7 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 2176, 160 )
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( -353.468, 0 )
+scale = Vector2( 3.013, 3.28 )
+motion_scale = Vector2( 0.4, 1 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+light_mask = 2
+position = Vector2( -17.1581, -81.885 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 2176, 160 )
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( -351.076, 33.4832 )
+scale = Vector2( 2, 2.187 )
+motion_scale = Vector2( 0.5, 1 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer5"]
+position = Vector2( -1244.22, -140.787 )
+scale = Vector2( 1.5649, 1.5649 )
+texture = ExtResource( 5 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 2176, 160 )

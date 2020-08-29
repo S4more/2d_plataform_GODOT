@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://combat/sword/sword.gd" type="Script" id=2]
+
+[sub_resource type="SegmentShape2D" id=1]
+b = Vector2( 31.1325, 0.0489807 )
+
+[node name="weapon" type="Area2D"]
+position = Vector2( 157.544, 153.454 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+cooldown = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+disabled = true
+
+[node name="Duration" type="Timer" parent="."]
+process_mode = 0
+one_shot = true
+
+[node name="Cooldown" type="Timer" parent="."]
+process_mode = 0
+one_shot = true
+[connection signal="body_entered" from="." to="." method="_on_sword_body_entered"]
+[connection signal="timeout" from="Duration" to="." method="_on_Duration_timeout"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]

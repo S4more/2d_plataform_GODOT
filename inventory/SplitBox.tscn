@@ -1,0 +1,132 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://inventory/Invitem.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprites/fonts/ThaleahFat.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://sprites/fonts/ThaleahFat.tres" type="DynamicFont" id=3]
+[ext_resource path="res://inventory/SplitBox.gd" type="Script" id=4]
+[ext_resource path="res://inventory/styles/Inventory.tres" type="StyleBox" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 13
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.329412, 0.262745, 0.262745, 0 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color( 0, 0, 0, 0.427451 )
+shadow_size = 1
+
+[node name="SplitBox" type="Panel"]
+margin_left = 309.352
+margin_top = 125.415
+margin_right = 643.352
+margin_bottom = 213.415
+custom_styles/panel = ExtResource( 5 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="."]
+anchor_right = 1.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 3 )
+text = "SPLIT BOX"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="invItem" parent="." instance=ExtResource( 1 )]
+margin_left = 17.0
+margin_top = 22.0
+margin_right = -255.0
+margin_bottom = -13.0
+
+[node name="Name" type="Label" parent="."]
+margin_left = 4.45067
+margin_top = 1.23853
+margin_right = 87.4507
+margin_bottom = 16.2385
+custom_fonts/font = SubResource( 1 )
+text = "My item name"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SplitBtn" type="Button" parent="."]
+anchor_left = 0.365
+anchor_top = 0.948
+anchor_right = 0.365
+anchor_bottom = 0.948
+margin_left = -16.91
+margin_top = -20.424
+margin_right = 32.09
+margin_bottom = -1.424
+custom_fonts/font = SubResource( 2 )
+text = "Split"
+flat = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CancelBtn" type="Button" parent="."]
+anchor_left = 0.365
+anchor_top = 0.948
+anchor_right = 0.365
+anchor_bottom = 0.948
+margin_left = 73.09
+margin_top = -20.424
+margin_right = 127.09
+margin_bottom = -1.424
+custom_fonts/font = SubResource( 2 )
+text = "cancel"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider" type="HSlider" parent="."]
+margin_left = 97.0
+margin_top = 32.0
+margin_right = 223.0
+margin_bottom = 48.0
+min_value = 1.0
+value = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="."]
+margin_left = 232.0
+margin_top = 25.0
+margin_right = 314.0
+margin_bottom = 53.0
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = ExtResource( 3 )
+align = 1
+max_length = 3
+context_menu_enabled = false
+placeholder_text = "qnt"
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="SplitBtn" to="." method="_on_SplitBtn_pressed"]
+[connection signal="pressed" from="CancelBtn" to="." method="_on_CancelBtn_pressed"]
+[connection signal="value_changed" from="HSlider" to="." method="_on_HSlider_value_changed"]
+[connection signal="text_changed" from="LineEdit" to="." method="_on_LineEdit_text_changed"]

@@ -1,0 +1,149 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://inventory/iconPanel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprites/fonts/ThaleahFat.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://inventory/Description.gd" type="Script" id=4]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.254902, 0.243137, 0.243137, 0.760784 )
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+corner_detail = 10
+shadow_color = Color( 0, 0, 0, 0.129412 )
+shadow_size = 4
+
+[sub_resource type="DynamicFont" id=2]
+size = 14
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 21
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 17
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 18
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 20
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[node name="Description" type="Panel"]
+margin_right = 248.0
+margin_bottom = 285.0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="."]
+visible = false
+anchor_right = 1.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.972549, 0.960784, 0.960784, 1 )
+text = "DESCRIPTION"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="."]
+anchor_left = 0.272593
+anchor_top = 0.0516154
+anchor_right = 0.845869
+anchor_bottom = 0.0691592
+margin_left = 4.45067
+margin_top = 1.2385
+margin_right = 0.0239868
+margin_bottom = 16.2385
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.941176, 0.941176, 0.733333, 1 )
+text = "My item name"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Description" type="Label" parent="."]
+anchor_left = 0.265951
+anchor_top = 0.122362
+anchor_right = 0.839227
+anchor_bottom = 0.129379
+margin_left = 4.45067
+margin_top = 1.2385
+margin_right = 0.0239868
+margin_bottom = 16.2385
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.807843, 0.964706, 0.862745, 1 )
+text = "This is the item description"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="GridContainer" type="GridContainer" parent="."]
+anchor_left = 0.063
+anchor_top = 0.404762
+anchor_right = 0.989399
+anchor_bottom = 1.0034
+margin_left = -5.01859
+margin_top = -32.9722
+margin_right = -5.01859
+margin_bottom = -32.9722
+custom_constants/hseparation = 9
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="status" type="Label" parent="GridContainer"]
+margin_top = 1.0
+margin_right = 94.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 5 )
+text = "My item name"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="value" type="Label" parent="GridContainer"]
+margin_left = 103.0
+margin_right = 207.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 6 )
+text = "My item name"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Panel" parent="." instance=ExtResource( 1 )]
+anchor_left = 0.03
+anchor_top = 0.047
+anchor_right = 0.234
+anchor_bottom = 0.239
+margin_left = 0.559999
+margin_top = -0.395
+margin_right = -0.0320015
+margin_bottom = -9.11501
