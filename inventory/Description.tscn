@@ -2,6 +2,7 @@
 
 [ext_resource path="res://inventory/iconPanel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://sprites/fonts/ThaleahFat.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://sprites/fonts/ThaleahFat.tres" type="DynamicFont" id=3]
 [ext_resource path="res://inventory/Description.gd" type="Script" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -36,12 +37,6 @@ use_mipmaps = true
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=5]
-size = 18
-outline_size = 1
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=6]
 size = 20
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -118,10 +113,9 @@ __meta__ = {
 }
 
 [node name="status" type="Label" parent="GridContainer"]
-margin_top = 1.0
-margin_right = 94.0
-margin_bottom = 18.0
-custom_fonts/font = SubResource( 5 )
+margin_right = 12.0
+margin_bottom = 2.0
+custom_fonts/font = ExtResource( 3 )
 text = "My item name"
 align = 2
 __meta__ = {
@@ -129,10 +123,10 @@ __meta__ = {
 }
 
 [node name="value" type="Label" parent="GridContainer"]
-margin_left = 103.0
-margin_right = 207.0
-margin_bottom = 19.0
-custom_fonts/font = SubResource( 6 )
+margin_left = 21.0
+margin_right = 33.0
+margin_bottom = 2.0
+custom_fonts/font = SubResource( 5 )
 text = "My item name"
 __meta__ = {
 "_edit_use_anchors_": true

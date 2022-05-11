@@ -3,7 +3,7 @@ extends Panel
 onready var SplitUI = get_parent().get_node("SplitBox")
 
 var saver = preload("res://player/save.tscn").instance()
-var EmptyInvItem = preload("res://inventory/Invitem.tscn").instance()
+var EmptyInvItem = preload('res://inventory/InvItem.tscn').instance()
 var EmptyPhysicItem = preload("res://inventory/Item.tscn").instance()
 
 var selectedPopupItem = null
